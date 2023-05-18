@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'macos-ventura': "url('macos-ventura.jpg')",
+      }
     },
   },
   plugins: [
