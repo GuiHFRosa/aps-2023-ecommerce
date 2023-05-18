@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.4"
+ruby "3.2.2"
 
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "sprockets-rails"
@@ -15,6 +15,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "tailwindcss-rails", "~> 2.0"
 gem "font-awesome-sass", "~> 6.4.0"
+gem 'bcrypt'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -30,3 +31,5 @@ group :test do
   gem "webdrivers"
 end
 
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
