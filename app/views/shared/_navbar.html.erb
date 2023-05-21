@@ -1,14 +1,19 @@
 <header class="">
     <nav>
         <div class="flex justify-between items-center w-full h-28 p-2  border-b border-gray-600">
-            <div>
-                <h1 class="text-xl">Hackintosh ECommerce</h1>
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">
+                  <%= icon('fa-solid', 'microchip')%>
+                </span>
+                <h1 class="text-xl">Hackfy</h1>
             </div>
             <div>
                 <ul class="flex space-x-4 text-2xl">
                     <li><%= icon('fa-solid', 'search')%></li>
                     <li><%= icon('fa-solid', 'store')%></li>
-                    <li><%= icon('fa-solid', 'shopping-cart')%></li>
+                    <li>
+                      <%= link_to'', cart_path, class:'fa fa-solid fa-shopping-cart' %>
+                    </li>
                     <li><%= icon('fa-solid', 'user')%></li>                    
                 </ul>
             </div>

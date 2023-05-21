@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "tailwindcss-rails", "~> 2.0"
 gem "font-awesome-sass", "~> 6.4.0"
 gem 'bcrypt'
+gem 'jwt'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -33,3 +34,6 @@ end
 
 
 gem "dockerfile-rails", ">= 1.2", :group => :development
+
+gem "devise", "~> 4.9"
+gem "devise-i18n", "~> 1.11"

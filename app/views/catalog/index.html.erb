@@ -1,0 +1,20 @@
+<%= render 'shared/navbar' %>
+<div class="flex w-full px-10">
+  <div class="flex flex-col space-y-3 divide-y w-2/6">
+
+  </div>
+  <div class="grid grid-cols-3 gap-6 w-4/6">
+    <% @products.each do |product| %>
+      <div class="flex flex-col items-center p-4 rounded-lg hover:scale-105 duration-300">
+        <%=image_tag 'sticktosh.png'%>
+        <a class=""><%=product.name %></a>
+        <p class="font-bold">R$ <%=product.price %></p>
+        <p >ou 10x  de R$ <%=product.price/10 %></p>
+        <div class="flex space-x-2">
+          <button class="bg-sky-700 text-white p-1 w-16 rounded-lg"><%= icon('fa-solid', 'cart-plus')%></button>
+          <button class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
