@@ -11,7 +11,9 @@
         <p class="font-bold">R$ <%=product.price %></p>
         <p >ou 10x  de R$ <%=product.price/10 %></p>
         <div class="flex space-x-2">
-          <button class="bg-sky-700 text-white p-1 w-16 rounded-lg"><%= icon('fa-solid', 'cart-plus')%></button>
+          <%= button_tag class: 'bg-sky-700 text-white p-1 w-16 rounded-lg' do %>
+            <%= icon('fa-solid', 'cart-plus')%>
+          <% end %>
           <button class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
         </div>
       </div>

@@ -3,14 +3,15 @@
         <div class="flex justify-between items-center w-full h-28 p-2  border-b border-gray-600">
             <div class="flex items-center space-x-2">
                 <span class="text-2xl">
-                  <%= icon('fa-solid', 'microchip')%>
+                  <%= link_to'', root_path, class:'fa fa-solid fa-microchip' %>
                 </span>
                 <h1 class="text-xl">Hackfy</h1>
             </div>
             <div>
                 <ul class="flex space-x-4 text-2xl">
-                    <li><%= icon('fa-solid', 'search')%></li>
-                    <li><%= icon('fa-solid', 'store')%></li>
+                    <li>
+                      <%= link_to'', catalog_path, class:'fa fa-solid fa-store' %>
+                    </li>
                     <li>
                       <%= link_to'', cart_path, class:'fa fa-solid fa-shopping-cart' %>
                     </li>
