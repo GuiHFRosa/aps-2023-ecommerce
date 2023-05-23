@@ -1,19 +1,21 @@
 <%= render 'shared/navbar' %>
-<div class="flex w-full px-10">
-  <div class="flex flex-col space-y-3 divide-y w-2/6">
-
-  </div>
-  <div class="grid grid-cols-3 gap-6 w-4/6">
+<div class="flex flex-col w-full px-10 pt-3 space-y-3">
+  <h2 class="text-3xl font-semibold">CATÁLOGO DE PRODUTOS</h2>
+  <div class="p-1 w-10 bg-sky-700 rounded-lg"></div>
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
     <% @products.each do |product| %>
-      <div class="flex flex-col items-center p-4 rounded-lg hover:scale-105 duration-300">
+      <div class="flex flex-col items-center p-4 rounded-lg hover:scale-105 duration-300 border">
         <%=image_tag 'sticktosh.png'%>
-        <a class=""><%=product.name %></a>
-        <p class="font-bold">R$ <%=product.price %></p>
-        <p >ou 10x  de R$ <%=product.price/10 %></p>
+        <span class="text-lg"><%=product.name %></span>
+        <p class="font-bold text-lg">R$ <%=product.price %></p>
+        <p class="text-gray-500 text-sm">ou 10x de R$ <%=product.price/10 %></p>
         <div class="flex space-x-2">
-          <%= button_tag class: 'bg-sky-700 text-white p-1 w-16 rounded-lg' do %>
-            <%= icon('fa-solid', 'cart-plus')%>
-          <% end %>
+          <form action="/cart/cart_item" method="post">
+            <input type="hidden" name="product_id" value="<%= product.id %>">
+            <button type="submit" class="bg-sky-700 text-white p-1 w-16 rounded-lg">
+              <%= icon('fa-solid', 'cart-plus')%>
+            </button>
+          </form>
           <button class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
         </div>
       </div>
