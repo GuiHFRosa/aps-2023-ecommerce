@@ -1,5 +1,5 @@
 <%= render 'shared/navbar' %>
-<div class="flex justify-center px-10 pt-3 w-full h-full">
+<div class="flex justify-center px-10 py-3 w-full h-full">
   <% if @cart.cart_items %>
     <div class="flex flex-col w-full space-y-3">
       <h2 class="text-3xl font-semibold">CARRINHO DE COMPRAS</h2>
@@ -7,7 +7,9 @@
       <% @cart.cart_items.each do |cart_item| %>
         <div class="flex w-full h-32 items-center space-x-2 p-2 border rounded-lg">
           <div class="flex h-full">
-            <%= image_tag 'sticktosh.png', size: '300' %>
+            <% if cart_item.product.image.attached? %>
+              <%= image_tag(cart_item.product.image, style: "width: 300px") %>
+            <% end %>
           </div>
           <div class="flex flex-col w-full h-full">
             <h5 class="text-xl font-semibold"><%=cart_item.product.name %></h5>
@@ -15,7 +17,7 @@
           </div>
           <div class="flex flex-col w-full h-full">
             <div class="flex justify-end items-start">
-              <%= button_tag '', class: 'fa fa-solid fa-xmark text-xl' %>
+              <%= button_to '', remove_cart_item_path(cart_item), :method => :delete, class: 'fa fa-solid fa-xmark text-xl' %>
             </div>
             <div class="flex sapce-x-2 w-full h-full items-end">
               <div class="flex items-center justify-around w-full">
@@ -44,8 +46,12 @@
         </div>
         <hr>
         <div class="flex justify-between font-bold">
-          <span class="text-sky-700 text-sm">< Voltar ao catálogo</span>
-          <button class="p-2 bg-sky-700 text-white rounded-lg">Finalizar compra</button>
+          <span class="text-sky-700 text-sm">
+            <%= link_to '< Voltar ao catálogo', catalog_path %>
+          </span>
+          <% if @cart.cart_items.count > 0 %>
+            <button class="p-2 bg-sky-700 text-white rounded-lg">Finalizar compra</button>
+          <% end %>
         </div>
       </div>
     <% end %>

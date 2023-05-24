@@ -1,15 +1,64 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<%= render 'shared/navbar' %>
+<div class="flex flex-col w-full px-10 pt-3 space-y-3">
+  <h2 class="text-3xl font-semibold"><%= @product.name %></h2>
+  <div class="p-1 w-10 bg-sky-700 rounded-lg"></div>
+  <div class="flex flex-col space-y-3 px-4 py-3 w-[450px] border rounded-lg">
+    <% if @product.image.attached? %>
+      <%= image_tag(@product.image, style: 'width: 450px') %>
     <% end %>
-
-    <%= render @product %>
-
-    <%= link_to 'Edit this product', edit_product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this product', product_path(@product), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <h2 class="text-sm font-semibold text-gray-500"><%= @product.description %></h2>
+    <div class="flex flex-col">
+      <span class="font-bold text-lg">R$ <%= @product.price %></span>
+      <span class="text-gray-500 text-sm">ou 10x de R$ <%= @product.price/10 %></span>
     </div>
-    <%= link_to 'Back to products', products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="flex space-x-2">
+      <form action="/cart/cart_item" method="post">
+        <input type="hidden" name="product_id" value="<%= @product.id %>">
+        <button type="submit" class="bg-sky-700 text-white p-1 w-16 rounded-lg">
+          <%= icon('fa-solid', 'cart-plus')%>
+        </button>
+      </form>
+      <form action="/cart/cart_item/show" method="post">
+        <input type="hidden" name="product_id" value="<%= @product.id %>">
+        <button type="submit" class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
+      </form>
+    </div>
+  </div>
+  <h2 class="text-lg font-semibold">Especificações</h2>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Processador
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Placa de vídeo
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Memória Ram
+        </th>
+        <th scope="col" class="px-6 py-3">
+          SSD
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="bg-white border-b text-black">
+        <td class="px-6 py-4">
+          <%= @product.cpu %>
+        </td>
+        <td class="px-6 py-4">
+          <%= @product.gpu %>
+        </td>
+        <td class="px-6 py-4">
+          <%= @product.ram %>
+        </td>
+        <td class="px-6 py-4">
+          <%= @product.storage %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

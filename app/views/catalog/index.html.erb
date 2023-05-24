@@ -1,12 +1,16 @@
 <%= render 'shared/navbar' %>
-<div class="flex flex-col w-full px-10 pt-3 space-y-3">
+<div class="flex flex-col w-full px-10 py-3 space-y-3">
   <h2 class="text-3xl font-semibold">CATÁLOGO DE PRODUTOS</h2>
   <div class="p-1 w-10 bg-sky-700 rounded-lg"></div>
   <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
     <% @products.each do |product| %>
       <div class="flex flex-col items-center p-4 rounded-lg hover:scale-105 duration-300 border">
-        <%=image_tag 'sticktosh.png'%>
-        <span class="text-lg"><%=product.name %></span>
+        <% if product.image.attached? %>
+          <%= link_to product_path(product) do %>
+            <%= image_tag(product.image) %>
+          <% end %>
+        <% end %>
+        <span class="text-lg"><%= link_to product.name, product_path(product) %></span>
         <p class="font-bold text-lg">R$ <%=product.price %></p>
         <p class="text-gray-500 text-sm">ou 10x de R$ <%=product.price/10 %></p>
         <div class="flex space-x-2">
@@ -16,7 +20,10 @@
               <%= icon('fa-solid', 'cart-plus')%>
             </button>
           </form>
-          <button class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
+          <form action="/cart/cart_item/show" method="post">
+            <input type="hidden" name="product_id" value="<%= product.id %>">
+            <button type="submit" class="bg-sky-700 text-white p-1 rounded-lg">Comprar</button>
+          </form>
         </div>
       </div>
     <% end %>
